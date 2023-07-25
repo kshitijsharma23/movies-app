@@ -33,11 +33,15 @@ interface GetMockDataParams {
   requestParams?: Record<string, string | number>;
 }
 
-const USE_MOCKS = process.env.NODE_ENV === 'production';
+const isProductionEnv = process.env.NODE_ENV === 'production';
+const USE_MOCKS = isProductionEnv;
+const mockDirectory = isProductionEnv
+  ? import.meta.env.BASE_URL
+  : '../mocks/__mocks__';
 
 const ApiMocks = {
   [ApiKeys.MOVIES_LIST]: {
-    url: '../mocks/moviesResponse.json',
+    url: `${mockDirectory}/moviesResponse.json`,
     getData: ({ response, queryParams }: GetMockDataParams) => {
       const query = queryParams?.['query'];
       return getFilteredMovies(
@@ -47,7 +51,7 @@ const ApiMocks = {
     },
   },
   [ApiKeys.MOVIE_DETAILS]: {
-    url: '../mocks/moviesResponse.json',
+    url: `${mockDirectory}/moviesResponse.json`,
     getData: ({ response, requestParams }: GetMockDataParams) => {
       const movieId = requestParams?.['id'];
 
@@ -60,11 +64,21 @@ const ApiMocks = {
     },
   },
   [ApiKeys.PROFILE]: {
-    url: '../mocks/profileResponse.json',
+    url: `${mockDirectory}/profileResponse.json`,
     getData: ({ response }: GetMockDataParams) => {
       return response as Profile;
     },
   },
+};
+
+const fetchMock = async (url: string) => {
+  if (isProductionEnv) {
+    const res = await fetch(url);
+    const response = await res.json();
+    return response;
+  }
+  const res = (await import(url)) as { default: unknown };
+  return res.default;
 };
 
 export const getApiUrl = ({
@@ -107,9 +121,7 @@ export const apiCaller = async <T = unknown>({
 }: ApiCallerParams) => {
   if (USE_MOCKS) {
     const { url, getData } = ApiMocks[apiKey];
-    const res = (await import(url)) as { default: unknown };
-    console.log(res);
-    const response = res.default;
+    const response = await fetchMock(url);
     return getData({ response, queryParams, requestParams });
   } else {
     try {
