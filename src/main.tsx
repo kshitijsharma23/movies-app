@@ -13,7 +13,9 @@ import App from './App';
 
 import './index.scss';
 
-worker.start();
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

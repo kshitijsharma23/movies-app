@@ -1,15 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { apiCaller, GetApiUrlParams, getApiUrl } from '@src/utils/apiUtils';
+import { apiCaller, ApiCallerParams } from '@utils/apiUtils';
 
-import { ApiUrls } from '@constants/apiConstants';
+import { ApiKeys } from '@constants/apiConstants';
+
 import { MovieDetails, MoviesResponse } from '@src/types/movies';
 
 export const fetchMovies = createAsyncThunk(
   'movies/fetchMovies',
   async (query?: string | null) => {
-    const apiParams: GetApiUrlParams = {
-      url: ApiUrls.MOVIES_LIST,
+    const apiParams: ApiCallerParams = {
+      apiKey: ApiKeys.MOVIES_LIST,
     };
 
     if (query) {
@@ -18,8 +19,9 @@ export const fetchMovies = createAsyncThunk(
       };
     }
 
-    const url = getApiUrl(apiParams);
-    const response = await apiCaller<MoviesResponse>({ url });
+    const response = (await apiCaller<MoviesResponse>(
+      apiParams,
+    )) as MoviesResponse;
     return response;
   },
 );
@@ -27,11 +29,10 @@ export const fetchMovies = createAsyncThunk(
 export const fetchMovieById = createAsyncThunk(
   'movies/fetchMovieById',
   async (id: string) => {
-    const url = getApiUrl({
-      url: ApiUrls.MOVIE_DETAILS,
+    const response = (await apiCaller<MovieDetails>({
+      apiKey: ApiKeys.MOVIE_DETAILS,
       requestParams: { id },
-    });
-    const response = await apiCaller<MovieDetails>({ url });
+    })) as MovieDetails;
     return response;
   },
 );

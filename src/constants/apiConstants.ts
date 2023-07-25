@@ -1,8 +1,14 @@
 const { host, protocol } = window.location;
 export const baseUrl = `${protocol}//${host}`;
 
-export enum ApiUrls {
-  MOVIES_LIST = '/movies',
-  MOVIE_DETAILS = '/movies/{id}',
-  PROFILE = '/profile',
+export enum ApiKeys {
+  MOVIES_LIST = 'MOVIES_LIST',
+  MOVIE_DETAILS = 'MOVIE_DETAILS',
+  PROFILE = 'PROFILE',
 }
+
+export const ApiUrls = {
+  [ApiKeys.MOVIES_LIST]: '/movies',
+  [ApiKeys.MOVIE_DETAILS]: '/movies/{id}',
+  [ApiKeys.PROFILE]: '/profile',
+};

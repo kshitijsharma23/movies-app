@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 
 export default defineConfig({
-  base: '/movies-app',
+  base: process.env.NODE_ENV === 'production' ? '/movies-app' : '/',
   plugins: [react()],
   resolve: {
     alias: {
