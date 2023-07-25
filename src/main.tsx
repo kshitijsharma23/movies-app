@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Provider store={store}>
         <ThemeProvider>
           <App />

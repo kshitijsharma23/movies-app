@@ -4,7 +4,7 @@ import { ApiKeys, ApiUrls, baseUrl } from '@constants/apiConstants';
 
 import { getFilteredMovies, getMovieDetails } from '@utils/mockUtils';
 
-import moviesResponse from '@mocks/moviesResponse.json';
+import moviesResponse from '../__mocks__/moviesResponse.json';
 
 export const movieHandlers = [
   rest.get(`${baseUrl}${ApiUrls[ApiKeys.MOVIES_LIST]}`, (req, res, ctx) => {

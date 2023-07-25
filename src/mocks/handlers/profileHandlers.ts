@@ -4,7 +4,7 @@ import { ApiKeys, ApiUrls, baseUrl } from '@constants/apiConstants';
 
 import { Profile } from '@src/types/profile';
 
-import profileResponse from '../profileResponse.json';
+import profileResponse from '../__mocks__/profileResponse.json';
 
 export const profileHandlers = [
   rest.get(`${baseUrl}${ApiUrls[ApiKeys.PROFILE]}`, (_req, res, ctx) => {
