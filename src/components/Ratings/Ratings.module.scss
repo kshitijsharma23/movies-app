@@ -1,0 +1,14 @@
+.ratings-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  .ratings-value {
+    color: var(--color-text-secondary);
+    margin-left: 12px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 31px;
+  }
+}
