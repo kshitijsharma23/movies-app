@@ -1,5 +1,3 @@
-import moviesResponse from '@mocks/moviesResponse.json';
-
 import { Movie, MoviesResponseWithDetails } from '@src/types/movies';
 
 const checkMovieSatisfiesSearch = (movieTitle: string, query: string) => {
@@ -12,26 +10,34 @@ const checkMovieSatisfiesSearch = (movieTitle: string, query: string) => {
   );
 };
 
-export const getFilteredMovies = (query: string | null) => {
+const getMoviesWithBriefDetails = (movies: MoviesResponseWithDetails) =>
+  movies.map((movie) => {
+    const { Images, imdbID, Poster, Title } = movie;
+    return {
+      Images,
+      imdbID,
+      Poster,
+      Title,
+    } as Movie;
+  });
+
+export const getFilteredMovies = (
+  movies: MoviesResponseWithDetails,
+  query: string | null,
+) => {
   if (!query) {
-    return moviesResponse;
+    return getMoviesWithBriefDetails(movies);
   }
 
-  return (moviesResponse as MoviesResponseWithDetails)
-    .filter((movie) => checkMovieSatisfiesSearch(movie.Title, query))
-    .map((movie) => {
-      const { Images, imdbID, Poster, Title } = movie;
-      return {
-        Images,
-        imdbID,
-        Poster,
-        Title,
-      } as Movie;
-    });
+  const filteredMovies = movies.filter((movie) =>
+    checkMovieSatisfiesSearch(movie.Title, query),
+  );
+  return getMoviesWithBriefDetails(filteredMovies);
 };
 
-export const getMovieDetails = (movieId: string) => {
-  return (moviesResponse as MoviesResponseWithDetails).find(
-    (movie) => movie.imdbID === movieId,
-  );
+export const getMovieDetails = (
+  movies: MoviesResponseWithDetails,
+  movieId: string,
+) => {
+  return movies.find((movie) => movie.imdbID === movieId);
 };
