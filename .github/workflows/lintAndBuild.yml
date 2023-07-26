@@ -1,11 +1,11 @@
-name: Deploy Movie App
+name: Lint, Prettier and Build Checks
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
 jobs:
-  build_and_deploy:
+  lint_prettier_build_checks:
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,11 +26,11 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Check Prettier
+        run: yarn prettier-check
+
+      - name: Check lint
+        run: yarn lint
+
       - name: Build
         run: yarn build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
-          publish_dir: ./dist
