@@ -30,7 +30,10 @@ const Ratings: FC<RatingsProps> = (props) => {
 
   return (
     <div className={styles['ratings-container']}>
-      <RatingsBar value={ratingsValue} variant="determinate" />
+      <RatingsBar
+        value={Number.isNaN(ratingsValue) ? 0 : ratingsValue}
+        variant="determinate"
+      />
       <div className={styles['ratings-value']}>{ratings}</div>
     </div>
   );

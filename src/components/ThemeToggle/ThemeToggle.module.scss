@@ -4,3 +4,11 @@
     margin-right: 12px;
   }
 }
+
+@media (min-width: 0px) and (max-width: 599px) {
+  .theme-toggle-button {
+    &[class*='MuiIconButton-root'] {
+      margin-right: 0;
+    }
+  }
+}

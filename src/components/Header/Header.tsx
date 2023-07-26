@@ -4,10 +4,17 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 
+import MenuIcon from '@mui/icons-material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import Search from '@components/Search';
 import ThemeToggle from '@components/ThemeToggle';
+
+import styles from './Header.module.scss';
+
+interface HeaderProps {
+  handleDrawerToggle: () => void;
+}
 
 const CustomToolbar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -19,10 +26,24 @@ const CustomToolbar = styled(Toolbar)(() => ({
   },
 }));
 
-const Header: FC = () => {
+const Header: FC<HeaderProps> = (props) => {
+  const { handleDrawerToggle } = props;
+
   return (
     <CustomToolbar>
-      <Search />
+      <div className={styles['header-left-column']}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{ mr: 1, display: { md: 'none' } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Search />
+      </div>
+
       <div>
         <ThemeToggle />
         <IconButton>

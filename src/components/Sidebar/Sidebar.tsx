@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -13,6 +13,11 @@ import {
 
 import NavList from './NavList';
 import UserInfo from '@components/UserInfo/UserInfo';
+
+interface SidebarProps {
+  handleDrawerToggle: () => void;
+  mobileOpen: boolean;
+}
 
 const DrawerContent: FC = () => {
   return (
@@ -30,19 +35,15 @@ const DrawerContent: FC = () => {
   );
 };
 
-const Sidebar: FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevMobileOpen) => !prevMobileOpen);
-  };
+const Sidebar: FC<SidebarProps> = (props) => {
+  const { handleDrawerToggle, mobileOpen } = props;
 
   return (
     <Box
       component="nav"
       sx={{
-        width: { sm: 'var(--sidebar-width)' },
-        flexShrink: { sm: 0 },
+        width: { md: 'var(--sidebar-width)' },
+        flexShrink: { md: 0 },
       }}
     >
       <Drawer
@@ -54,7 +55,7 @@ const Sidebar: FC = () => {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: 'var(--sidebar-width)',
@@ -66,7 +67,7 @@ const Sidebar: FC = () => {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'none', md: 'block' },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: 'var(--sidebar-width)',
