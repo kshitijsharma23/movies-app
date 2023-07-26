@@ -34,7 +34,7 @@ const UserInfo: FC = () => {
           <div className={styles['user-initials']}>{userInitials}</div>
         )}
       </div>
-      <div className={styles['name']}>{name}</div>
+      <div className={styles.name}>{name}</div>
     </div>
   );
 };

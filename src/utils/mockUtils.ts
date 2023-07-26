@@ -5,9 +5,7 @@ const checkMovieSatisfiesSearch = (movieTitle: string, query: string) => {
     return false;
   }
 
-  return (
-    movieTitle.toLowerCase().trim().indexOf(query.toLowerCase().trim()) >= 0
-  );
+  return movieTitle.toLowerCase().trim().includes(query.toLowerCase().trim());
 };
 
 const getMoviesWithBriefDetails = (movies: MoviesResponseWithDetails) =>

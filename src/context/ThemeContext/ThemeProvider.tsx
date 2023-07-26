@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   theme: Theme.DARK,
 };
 
-const ThemeProvider: FC<PropsWithChildren<unknown>> = (props) => {
+const ThemeProvider: FC<PropsWithChildren> = (props) => {
   const { children } = props;
   const [state, dispatch] = useReducer(themeReducer, INITIAL_STATE);
 

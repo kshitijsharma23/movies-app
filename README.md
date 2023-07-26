@@ -1,27 +1,22 @@
-# React + TypeScript + Vite
+# Movies App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movies App built using React, MUI and TypeScript. Uses Vite's React + TypeScript template.
 
-Currently, two official plugins are available:
+Production build deployed on [GitHub Pages](https://kshitijsharma23.github.io/movies-app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Dark mode support (use theme toggle button on top right).
+- MSW to mock REST APIs for getting movies and user data on development environment.
+- Responsive UI.
+- CI/CD setup using GitHub actions to deploy the production build to GitHub pages whenever changes are pushed to the `main` branch.
+- Setup pre-commit and pre-push Git hooks using Husky for formatting, linting, type checking, etc.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## How to run the project on local?
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repo.
+2. `cd movies-app`
+3. Install dependencies: `yarn`.
+4. Run the project: `yarn dev`.
+5. Create production build: `yarn build`.
+6. Run production build on local: `yarn preview`.

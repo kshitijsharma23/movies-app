@@ -20,9 +20,8 @@ function App() {
   const dispatch = useAppDispatch();
   const { muiTheme } = useTheme();
 
-  // console.log(muiTheme);
   useEffect(() => {
-    dispatch(fetchUserProfile());
+    void dispatch(fetchUserProfile());
   }, [dispatch]);
 
   return (

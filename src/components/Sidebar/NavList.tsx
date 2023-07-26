@@ -6,13 +6,13 @@ import { NavItem as NavItemProps } from '@src/types/sidebar';
 import NavItem from './NavItem';
 
 interface NavListProps {
-  navItems: Array<NavItemProps>;
+  navItems: NavItemProps[];
 }
 
 const NavList: FC<NavListProps> = (props) => {
   const { navItems } = props;
 
-  if (!navItems || !navItems.length) {
+  if (!navItems.length) {
     return null;
   }
 

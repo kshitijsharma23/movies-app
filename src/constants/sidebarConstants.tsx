@@ -11,7 +11,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import { NavItem } from '@src/types/sidebar';
 import { AppRoutes } from '.';
 
-export const sidebarL1Items: Array<NavItem> = [
+export const sidebarL1Items: NavItem[] = [
   {
     title: 'Discover',
     route: AppRoutes.DISCOVER,
@@ -41,7 +41,7 @@ export const sidebarL1Items: Array<NavItem> = [
   },
 ];
 
-export const sidebarL2Items: Array<NavItem> = [
+export const sidebarL2Items: NavItem[] = [
   {
     title: 'Watch Later',
     route: AppRoutes.WATCH_LATER,
@@ -56,7 +56,7 @@ export const sidebarL2Items: Array<NavItem> = [
   },
 ];
 
-export const sidebarL3Items: Array<NavItem> = [
+export const sidebarL3Items: NavItem[] = [
   {
     title: 'Settings',
     route: AppRoutes.SETTINGS,

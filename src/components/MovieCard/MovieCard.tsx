@@ -43,12 +43,10 @@ const MovieCard: FC<MovieCardProps> = (props) => {
       onMovieCardClick(null);
     } else {
       dispatch(setSelectedMovieId(imdbID));
-      dispatch(fetchMovieById(imdbID));
+      void dispatch(fetchMovieById(imdbID));
 
       const containerWidth = (
-        event.currentTarget?.parentNode?.parentNode as
-          | HTMLDivElement
-          | undefined
+        event.currentTarget.parentNode?.parentNode as HTMLDivElement | undefined
       )?.clientWidth;
 
       const movieDetailsLayout = getMovieDetailsLayout(
@@ -62,7 +60,7 @@ const MovieCard: FC<MovieCardProps> = (props) => {
   return (
     <div
       className={cx(styles['movie-card'], {
-        [styles['selected']]: isSelected,
+        [styles.selected]: isSelected,
       })}
       onClick={handleClick}
       role="button"

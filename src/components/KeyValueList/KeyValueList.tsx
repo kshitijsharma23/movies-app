@@ -6,11 +6,6 @@ interface KeyValueListProps {
   keyValuePairs: Record<string, string | number>;
 }
 
-interface KeyValueListData {
-  keys: Array<string>;
-  values: Array<string | number>;
-}
-
 const KeyValueList: FC<KeyValueListProps> = (props) => {
   const { keyValuePairs } = props;
 
@@ -20,9 +15,9 @@ const KeyValueList: FC<KeyValueListProps> = (props) => {
       values: [...values, value],
     }),
     {
-      keys: [],
-      values: [],
-    } as KeyValueListData,
+      keys: [] as string[],
+      values: [] as (string | number)[],
+    },
   );
 
   return (

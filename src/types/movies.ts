@@ -1,5 +1,5 @@
 export interface Movie {
-  Images: Array<string>;
+  Images: string[];
   imdbID: string;
   Poster: string;
   Title: string;
@@ -25,6 +25,6 @@ export interface MovieDetails extends Movie {
   Year: string;
 }
 
-export type MoviesResponse = Array<Movie>;
+export type MoviesResponse = Movie[];
 
-export type MoviesResponseWithDetails = Array<MovieDetails>;
+export type MoviesResponseWithDetails = MovieDetails[];
