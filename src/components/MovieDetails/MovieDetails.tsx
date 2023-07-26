@@ -72,10 +72,10 @@ const MovieDetails: FC<MovieDetailsProps> = (props) => {
         <img className={styles['movie-poster']} src={poster} />
       </div>
       <div className={styles['details-container']}>
-        <div className={styles['title']}>{title}</div>
+        <div className={styles.title}>{title}</div>
         <Ratings ratings={imdbRating} />
         <KeyValueList keyValuePairs={keyValueData} />
-        <div className={styles['plot']}>{plot}</div>
+        <div className={styles.plot}>{plot}</div>
         <div className={styles['buttons-container']}>
           <Button variant="contained">Play Movie</Button>
           <Button variant="outlined">Watch Trailer</Button>

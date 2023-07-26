@@ -33,7 +33,7 @@ const MoviesList: FC = () => {
     movieDetailsLayout: MovieDetailsLayout | null,
   ) => {
     const { indexToInsert = null, maxWidth = '100%' } =
-      movieDetailsLayout || {};
+      movieDetailsLayout ?? {};
     setIndexToInsertDetails(indexToInsert);
     setMovieDetailsMaxWidth(maxWidth);
   };

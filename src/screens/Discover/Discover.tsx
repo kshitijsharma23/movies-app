@@ -26,7 +26,7 @@ const Discover: FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchMovies(searchParams.get(discoverSearchQueryParam)));
+    void dispatch(fetchMovies(searchParams.get(discoverSearchQueryParam)));
   }, [dispatch, searchParams]);
 
   return <MoviesList />;

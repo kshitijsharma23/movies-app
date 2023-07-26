@@ -43,7 +43,7 @@ const ApiMocks = {
   [ApiKeys.MOVIES_LIST]: {
     url: `${mockDirectory}/moviesResponse.json`,
     getData: ({ response, queryParams }: GetMockDataParams) => {
-      const query = queryParams?.['query'];
+      const query = queryParams?.query;
       return getFilteredMovies(
         response as MoviesResponseWithDetails,
         query ? `${query}` : null,
@@ -54,7 +54,7 @@ const ApiMocks = {
   [ApiKeys.MOVIE_DETAILS]: {
     url: `${mockDirectory}/moviesResponse.json`,
     getData: ({ response, requestParams }: GetMockDataParams) => {
-      const movieId = requestParams?.['id'];
+      const movieId = requestParams?.id;
 
       if (movieId) {
         return getMovieDetails(
@@ -85,7 +85,7 @@ const delay = async (timeout: number) => {
 const fetchMock = async (url: string) => {
   if (isProductionEnv) {
     const res = await fetch(url);
-    const response = await res.json();
+    const response = (await res.json()) as unknown;
     return response;
   }
   const res = (await import(url)) as { default: unknown };
@@ -103,7 +103,7 @@ export const getApiUrl = ({
     apiUrl = Object.entries(requestParams).reduce((acc, [key, value]) => {
       const newPath = acc.replace(`{${key}}`, `${value}`);
       return newPath;
-    }, url as string);
+    }, url);
   }
 
   if (queryParams) {
@@ -149,7 +149,7 @@ export const apiCaller = async <T = unknown>({
         return response;
       }
     } catch (error: unknown) {
-      throw new Error((error as ErrorResponse)?.message);
+      throw new Error((error as ErrorResponse).message);
     }
   }
 };

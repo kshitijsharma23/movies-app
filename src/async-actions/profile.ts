@@ -9,9 +9,9 @@ import { Profile } from '@src/types/profile';
 export const fetchUserProfile = createAsyncThunk(
   'profile/fetchUserProfile',
   async () => {
-    const response = apiCaller<Profile>({
+    const response = (await apiCaller<Profile>({
       apiKey: ApiKeys.PROFILE,
-    }) as unknown as Profile;
+    })) as unknown as Profile;
     return response;
   },
 );

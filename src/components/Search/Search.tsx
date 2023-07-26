@@ -92,7 +92,7 @@ const Search: FC = () => {
   return (
     <div
       className={cx(styles['search-wrapper'], {
-        [styles['expanded']]: showSearch,
+        [styles.expanded]: showSearch,
       })}
     >
       {showSearch ? (

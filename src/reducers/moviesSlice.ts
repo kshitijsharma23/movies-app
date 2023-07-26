@@ -56,7 +56,7 @@ export const moviesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action: SetMoviesAction) => {
-      state.moviesList.data = action.payload || null;
+      state.moviesList.data = action.payload ?? null;
       state.moviesList.error = null;
       state.moviesList.hasError = false;
       state.moviesList.loading = false;
@@ -78,7 +78,7 @@ export const moviesSlice = createSlice({
     builder.addCase(
       fetchMovieById.fulfilled,
       (state, action: SetSelectedMovieDetailsAction) => {
-        state.selectedMovieDetails.data = action.payload || null;
+        state.selectedMovieDetails.data = action.payload ?? null;
         state.selectedMovieDetails.error = null;
         state.selectedMovieDetails.hasError = false;
         state.selectedMovieDetails.loading = false;
@@ -93,7 +93,7 @@ export const moviesSlice = createSlice({
 
     builder.addCase(fetchMovieById.rejected, (state, action) => {
       state.selectedMovieDetails.error =
-        (action.error as unknown as ErrorResponse)?.message || null;
+        (action.error as unknown as ErrorResponse).message || null;
       state.selectedMovieDetails.data = null;
       state.selectedMovieDetails.hasError = true;
       state.selectedMovieDetails.loading = false;

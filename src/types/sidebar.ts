@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-// import { NavigateFunction } from 'react-router-dom';
 
 export interface NavIconProps {
   isActive: boolean;
