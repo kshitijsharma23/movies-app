@@ -88,7 +88,7 @@ const fetchMock = async (url: string) => {
     const response = (await res.json()) as unknown;
     return response;
   }
-  const res = (await import(url)) as { default: unknown };
+  const res = (await import(/* @vite-ignore */ url)) as { default: unknown };
   return res.default;
 };
 

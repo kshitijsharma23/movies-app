@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,6 +17,7 @@ import AppRouter from './AppRouter';
 import './App.scss';
 
 function App() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { muiTheme } = useTheme();
 
@@ -24,20 +25,27 @@ function App() {
     void dispatch(fetchUserProfile());
   }, [dispatch]);
 
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevMobileOpen) => !prevMobileOpen);
+  };
+
   return (
     <MuiThemeProvider theme={muiTheme}>
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
-        <Sidebar />
+        <Sidebar
+          handleDrawerToggle={handleDrawerToggle}
+          mobileOpen={mobileOpen}
+        />
         <Box
           component="main"
           sx={{
             flex: 1,
-            p: 5,
-            width: { sm: `calc(100% - var(--sidebar-width))` },
+            p: { xs: 2, md: 5 },
+            width: { md: `calc(100% - var(--sidebar-width))` },
           }}
         >
-          <Header />
+          <Header handleDrawerToggle={handleDrawerToggle} />
           <AppRouter />
         </Box>
       </Box>
