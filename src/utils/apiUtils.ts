@@ -49,6 +49,7 @@ const ApiMocks = {
         query ? `${query}` : null,
       );
     },
+    timeout: 1000,
   },
   [ApiKeys.MOVIE_DETAILS]: {
     url: `${mockDirectory}/moviesResponse.json`,
@@ -62,13 +63,23 @@ const ApiMocks = {
         );
       }
     },
+    timeout: 1000,
   },
   [ApiKeys.PROFILE]: {
     url: `${mockDirectory}/profileResponse.json`,
     getData: ({ response }: GetMockDataParams) => {
       return response as Profile;
     },
+    timeout: 500,
   },
+};
+
+const delay = async (timeout: number) => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, timeout);
+  });
 };
 
 const fetchMock = async (url: string) => {
@@ -120,8 +131,9 @@ export const apiCaller = async <T = unknown>({
   requestParams,
 }: ApiCallerParams) => {
   if (USE_MOCKS) {
-    const { url, getData } = ApiMocks[apiKey];
+    const { url, getData, timeout } = ApiMocks[apiKey];
     const response = await fetchMock(url);
+    await delay(timeout);
     return getData({ response, queryParams, requestParams });
   } else {
     try {
